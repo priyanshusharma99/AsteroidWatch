@@ -34,7 +34,7 @@ engaging interface.
 ## ⚙️ Setup & Run
 1. Clone the repository:
 ```
-   git clone https://github.com/YOUR_USERNAME/asteroid-watch.git
+   git clone https://github.com/priyanshusharma99/AsteroidWatch.git
 ```
 2. Install dependencies:
 ```
