@@ -14,7 +14,6 @@
     
     <main>
         <section id="data-container">
-            <!-- Data will be loaded here later -->
             <p>Welcome to AsteroidWatch! Data visualization coming soon.</p>
         </section>
     </main>
@@ -22,5 +21,21 @@
     <footer>
         <p>&copy; 2026 AsteroidWatch Project</p>
     </footer>
+
+    <script>
+        fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=QYGRupebWsaJ9U0hmSKHvgahKNd5uUgkOKuWexcK")
+            .then(res => res.json())
+            .then(data => {
+                const dates = Object.keys(data.near_earth_objects);
+                const firstDateObjects = data.near_earth_objects[dates[0]];
+                let html = "<ul>";
+                for (let i = 0; i < firstDateObjects.length; i++) {
+                    const obj = firstDateObjects[i];
+                    html += `<li>${obj.name} (Hazardous: ${obj.is_potentially_hazardous_asteroid})</li>`;
+                }
+                html += "</ul>";
+                document.getElementById("data-container").innerHTML = html;
+            });
+    </script>
 </body>
 </html>
