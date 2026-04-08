@@ -26,7 +26,7 @@ const renderCards = (asteroids) => {
       <p><strong>Miss Distance:</strong> ${parseFloat(approach.miss_distance.kilometers).toFixed(0)} km</p>
       <p><strong>Velocity:</strong> ${parseFloat(approach.relative_velocity.kilometers_per_hour).toFixed(0)} km/h</p>
       <p class="hazard mt-2 ${isHazardous ? 'danger text-[#f87171] font-bold' : 'safe text-[#4ade80] font-bold'}">
-        ${isHazardous ? "⚠️ Potentially Hazardous" : "✅ Not Hazardous"}
+        ${isHazardous ? "⚠️ Potentially Hazardous" : " Not Hazardous"}
       </p>
     `;
 
