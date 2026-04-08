@@ -4,51 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AsteroidWatch</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>AsteroidWatch</h1>
-        <p>Keep an eye on Near-Earth Objects.</p>
-        <button id="theme-toggle">Toggle Light Mode</button>
+<body class="font-['Outfit'] bg-[#060a12] text-slate-300 min-h-screen">
+
+    <!-- Header -->
+    <header class="text-center py-14 px-6 border-b border-white/5 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,_#0d2137_0%,_#060a12_100%)]">
+        <p class="font-['Space_Mono'] text-[#45a29e] text-xs tracking-[0.5em] uppercase mb-4">NASA · NEO Feed</p>
+        <h1 class="text-6xl font-extrabold text-white mb-3 tracking-tight">
+            Asteroid<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#45a29e] to-[#66c2be]">Watch</span>
+        </h1>
+        <p class="text-slate-500 text-sm tracking-wide">Real-time Near-Earth Object tracking</p>
     </header>
-    
-    <main>
-        <div class="date">
-            <h1>Start Date</h1>
-            <input type="number" id="day" placeholder="DD" min="1" max="31" />
-<input type="number" id="month" placeholder="MM" min="1" max="12" />
-<input type="number" id="year" placeholder="YYYY" min="2000" max="2050" />
-            <h1>End Date</h1>
-            <input type="number" id="day" placeholder="DD" min="1" max="31" />
-<input type="number" id="month" placeholder="MM" min="1" max="12" />
-<input type="number" id="year" placeholder="YYYY" min="2000" max="2050" />
-            <button class="getall">
-                Go
-            </button>
-        </div>
-        <div id="controls">
-            <input type="text" id="search-input" placeholder="Search by name...">
-            <select id="filter-select">
-                <option value="all">All Asteroids</option>
-                <option value="hazardous">Hazardous Only</option>
-                <option value="safe">Safe Only</option>
-            </select>
-            <select id="sort-select">
-                <option value="name">Sort by Name</option>
-                <option value="size">Sort by Size (Large-Small)</option>
-                <option value="speed">Sort by Speed (Fast-Slow)</option>
-            </select>
-        </div>
 
-        <section id="data-container">
-            <div class="data">
+    <main class="px-6 py-10">
 
-                <div class="neo-card"></div>
+        <!-- Date Picker -->
+        <div class="bg-white/[0.03] border border-white/10 rounded-2xl p-6 mb-5 backdrop-blur-sm max-w-4xl mx-auto">
+            <div class="flex flex-wrap gap-6 justify-center items-end">
+
+                <div>
+                    <p class="font-['Space_Mono'] text-[10px] text-[#45a29e] tracking-[0.3em] uppercase mb-2">Start Date</p>
+                    <div class="flex gap-2">
+                        <input type="number" id="day" placeholder="DD" min="1" max="31"
+                            class="w-16 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                        <input type="number" id="month" placeholder="MM" min="1" max="12"
+                            class="w-16 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                        <input type="number" id="year" placeholder="YYYY" min="2000" max="2050"
+                            class="w-24 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                    </div>
+                </div>
+
+                <div class="text-slate-600 font-bold text-xl pb-1">→</div>
+
+                <div>
+                    <p class="font-['Space_Mono'] text-[10px] text-[#45a29e] tracking-[0.3em] uppercase mb-2">End Date</p>
+                    <div class="flex gap-2">
+                        <input type="number" id="enDay" placeholder="DD" min="1" max="31"
+                            class="w-16 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                        <input type="number" id="enMonth" placeholder="MM" min="1" max="12"
+                            class="w-16 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                        <input type="number" id="enYear" placeholder="YYYY" min="2000" max="2050"
+                            class="w-24 px-3 py-2.5 rounded-xl bg-white/5 text-white border border-white/10 focus:outline-none focus:border-[#45a29e] font-['Space_Mono'] text-sm text-center" />
+                    </div>
+                </div>
+
+                <button class="getall px-7 py-2.5 rounded-xl font-bold text-sm tracking-widest uppercase
+                    bg-gradient-to-r from-[#45a29e] to-[#2d8f8b] text-white
+                    shadow-[0_0_20px_#45a29e55] border border-[#45a29e]/40 hover:shadow-[0_0_30px_#45a29e88]">
+                    GO ›
+                </button>
             </div>
+            <p class="text-center text-slate-600 text-xs mt-4 font-['Space_Mono']">Max range: 7 days</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap gap-3 justify-center mb-8 max-w-4xl mx-auto">
+            <input type="text" id="search-input" placeholder="Search asteroid by name..."
+                class="flex-1 min-w-[200px] px-4 py-2.5 rounded-xl bg-white/[0.04] text-white border border-white/10 focus:outline-none focus:border-[#45a29e] text-sm placeholder-slate-600" />
+            <select id="filter-select"
+                class="px-4 py-2.5 rounded-xl bg-white/[0.04] text-slate-300 border border-white/10 focus:outline-none focus:border-[#45a29e] text-sm">
+                <option value="all">All Asteroids</option>
+                <option value="hazardous">⚠️ Hazardous Only</option>
+                <option value="safe">✅ Safe Only</option>
+            </select>
+            <select id="sort-select"
+                class="px-4 py-2.5 rounded-xl bg-white/[0.04] text-slate-300 border border-white/10 focus:outline-none focus:border-[#45a29e] text-sm">
+                <option value="name">Sort by Name</option>
+                <option value="size">Sort by Size (Large–Small)</option>
+                <option value="speed">Sort by Speed (Fast–Slow)</option>
+            </select>
+        </div>
+
+        <!-- Cards -->
+        <section class="bg-white/[0.02] border border-white/5 rounded-2xl p-6 min-h-[200px]">
+            <div class="data grid gap-5 [grid-template-columns:repeat(auto-fill,minmax(280px,1fr))]"></div>
         </section>
-        <button class="get">Get Data</button>
+
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
