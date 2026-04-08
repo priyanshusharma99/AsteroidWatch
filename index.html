@@ -10,32 +10,45 @@
     <header>
         <h1>AsteroidWatch</h1>
         <p>Keep an eye on Near-Earth Objects.</p>
+        <button id="theme-toggle">Toggle Light Mode</button>
     </header>
     
     <main>
+        <div class="date">
+            <h1>Start Date</h1>
+            <input type="number" id="day" placeholder="DD" min="1" max="31" />
+<input type="number" id="month" placeholder="MM" min="1" max="12" />
+<input type="number" id="year" placeholder="YYYY" min="2000" max="2050" />
+            <h1>End Date</h1>
+            <input type="number" id="day" placeholder="DD" min="1" max="31" />
+<input type="number" id="month" placeholder="MM" min="1" max="12" />
+<input type="number" id="year" placeholder="YYYY" min="2000" max="2050" />
+            <button class="getall">
+                Go
+            </button>
+        </div>
+        <div id="controls">
+            <input type="text" id="search-input" placeholder="Search by name...">
+            <select id="filter-select">
+                <option value="all">All Asteroids</option>
+                <option value="hazardous">Hazardous Only</option>
+                <option value="safe">Safe Only</option>
+            </select>
+            <select id="sort-select">
+                <option value="name">Sort by Name</option>
+                <option value="size">Sort by Size (Large-Small)</option>
+                <option value="speed">Sort by Speed (Fast-Slow)</option>
+            </select>
+        </div>
+
         <section id="data-container">
-            <p>Welcome to AsteroidWatch! Data visualization coming soon.</p>
+            <div class="data">
+
+                <div class="neo-card"></div>
+            </div>
         </section>
+        <button class="get">Get Data</button>
     </main>
-
-    <footer>
-        <p>&copy; 2026 AsteroidWatch Project</p>
-    </footer>
-
-    <script>
-        fetch("https://api.nasa.gov/neo/rest/v1/feed?api_key=QYGRupebWsaJ9U0hmSKHvgahKNd5uUgkOKuWexcK")
-            .then(res => res.json())
-            .then(data => {
-                const dates = Object.keys(data.near_earth_objects);
-                const firstDateObjects = data.near_earth_objects[dates[0]];
-                let html = "<ul>";
-                for (let i = 0; i < firstDateObjects.length; i++) {
-                    const obj = firstDateObjects[i];
-                    html += `<li>${obj.name} (Hazardous: ${obj.is_potentially_hazardous_asteroid})</li>`;
-                }
-                html += "</ul>";
-                document.getElementById("data-container").innerHTML = html;
-            });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

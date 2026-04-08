@@ -7,43 +7,189 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #0b0c10;
+    color: #c5c6c7;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
-    background-color: #2c3e50;
+    background: rgba(0, 0, 0, 0.7);
     color: #fff;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     text-align: center;
 }
 
-header h1 {
-    margin-bottom: 0.5rem;
+body.light-mode header {
+    background: #2c3e50;
+}
+
+#theme-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    background: #45a29e;
+    color: white;
+    border: none;
+    border-radius: 4px;
 }
 
 main {
     flex: 1;
     padding: 2rem;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     width: 100%;
 }
 
-#data-container {
+#controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#controls input, #controls select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #1f2833;
+    color: #fff;
+    font-size: 1rem;
+}
+
+body.light-mode #controls input, body.light-mode #controls select {
     background: #fff;
+    color: #333;
+    border: 1px solid #999;
+}
+
+#data-container {
+    background: rgba(31, 40, 51, 0.85);
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     text-align: center;
+    min-height: 200px;
+}
+
+body.light-mode #data-container {
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.neo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.neo-card {
+    background: rgba(11, 12, 16, 0.9);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #45a29e;
+    color: #66fcf1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.light-mode .neo-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.neo-card h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+body.light-mode .neo-card h3 {
+    color: #2c3e50;
+}
+
+.hazardous {
+    border-color: #ff4757;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-actions button {
+    padding: 6px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background: #45a29e;
+    color: white;
+    font-weight: bold;
+}
+
+.card-actions button.active {
+    background: #ff4757;
+}
+
+.details {
+    display: none;
+    margin-top: 15px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: left;
+}
+
+body.light-mode .details {
+    background: #eee;
 }
 
 footer {
-    background-color: #2c3e50;
+    background: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     padding: 1rem 0;
 }
+
+body.light-mode footer {
+    background: #2c3e50;
+}
+
+
+.data {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.neo-card {
+  background: #1e1e2e;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #eee;
+}
+
+.neo-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #7dd3fc;
+}
+
+.hazard.danger { color: #f87171; font-weight: bold; }
+.hazard.safe   { color: #4ade80; font-weight: bold; }
